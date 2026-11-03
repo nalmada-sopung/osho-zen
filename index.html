@@ -12,6 +12,13 @@
 .reading-line:first-of-type{border-top:0;padding-top:0}
 .reading-line strong{display:block;color:#604971;font-size:13px;margin-bottom:4px}
 .reading-line p{margin:0;font-size:15px;line-height:1.75;color:#342d37;overflow-wrap:anywhere}
+
+/* v15: 카드의 고유 주제 / 삶에서 만나기 가독성 향상. 다른 영역은 유지. */
+#cardDetail .meaning-section h3{font-size:19px;line-height:1.45;margin-bottom:16px}
+#cardDetail .meaning-section .reading-line{padding:14px 0;line-height:1.7}
+#cardDetail .meaning-section .reading-line strong{font-size:16px;margin-bottom:7px}
+#cardDetail .meaning-section .reading-line p{font-size:17px;line-height:1.8;margin:0;word-break:keep-all}
+#cardDetail .meaning-section{padding:20px 18px;margin:14px 0}
 </style></head><body>
 <header><div class="inner"><div class="eyebrow">날마다 소풍 👣 · STUDIO 02</div><h1>마음을 걷다</h1><p>오쇼 젠 카드 · 에고 · 저항 · 참자아(나의 근원)</p></div></header>
 <main>
@@ -32,14 +39,14 @@ const detail=$('cardDetail');detail.replaceChildren();
 detail.append(e('h2',`${c.name} · ${c.en}`),e('p',`${c.cat} 카드 · 실제 덱의 그림과 함께 학습`,'small'));
 let keys=e('div',undefined,'keyword-strip');keys.append(e('strong','핵심 키워드'),e('span',c.keypoints.join(' · ')));detail.append(keys);
 let section1=e('div',undefined,'meaning-section');
-section1.append(e('h3','카드의 고유 주제 · 삶에서 이해하기'));
-for(const [title,val] of [['주제',c.meaning],['삶의 장면',c.scene],['쉽게 이해하기',c.plain]]){
+section1.append(e('h3','카드의 고유 주제 · 의미 이해하기'));
+for(const [title,val] of [['주제',c.meaning],['쉽게 이해하기',c.plain]]){
   let line=e('div',undefined,'reading-line');line.append(e('strong',title),e('p',val));section1.append(line)
 }
 detail.append(section1);
 let section2=e('div',undefined,'meaning-section life-section');
-section2.append(e('h3','카드의 삶 연결 · 마음의 두 방향'));
-for(const [title,val] of [['마음이 걸리는 부분',c.ego],['내가 정말 바라는 것',c.self],['함께 살펴볼 점',c.focus]]){
+section2.append(e('h3','삶에서 만나기 · 장면과 관찰'));
+for(const [title,val] of [['삶의 장면',c.scene],['이 장면에서 살펴볼 점',c.focus]]){
   let line=e('div',undefined,'reading-line');line.append(e('strong',title),e('p',val));section2.append(line)
 }
 detail.append(section2);
@@ -49,7 +56,7 @@ document.querySelectorAll('#posTabs button').forEach(b=>b.classList.toggle('acti
 const list=$('caseList');list.replaceChildren();
 [0,1,2].filter(i=>pos==='all'||+pos===i).forEach(i=>{
   let x=example(c,i),box=e('div',undefined,'case');
-  box.append(e('h3',`${i+1}. ${positions[i]} · ${x.head}`),e('strong','삶의 사례'),e('p',x.scene),e('strong','리딩 포인트'),e('p',x.reading),e('strong','내담자 확인 질문'),e('p',x.question),e('div',`다른 가능성: ${x.other}`,'small'));
+  box.append(e('h3',`${i+1}. ${positions[i]} · ${x.head}`),e('strong','리딩 포인트'),e('p',x.reading),e('strong','내담자 확인 질문'),e('p',x.question),e('div',`다른 가능성: ${x.other}`,'small'));
   list.append(box)
 });
 }
